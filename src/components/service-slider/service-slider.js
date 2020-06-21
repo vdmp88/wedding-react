@@ -58,6 +58,20 @@ export default class ServiceSlider extends Component {
             </div>
           </div>
         </div>
+        <div className="slider__card-outer">
+          <div className="slider__card-inner">
+            <div className="slider__img">
+              <img src="img/service1.jpg" alt="slide-item" />
+            </div>
+            <div className="slider__desc">
+              <h4 className="slider__title">For Bride and Groom</h4>
+              <ul className="slider__list">
+                <li>First Dance</li>
+                <li>Parent & Child Dance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </Slider>
     );
   }

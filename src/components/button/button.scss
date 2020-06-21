@@ -87,6 +87,7 @@
       right: 16px;
       bottom: 16px;
       display: none;
+      align-items: center;
       @include break(991) {
         display: flex;
       }
