@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import AppHeader from "../app-header";
-import AppFooter from "../app-footer";
+import Header from "../header";
+import Footer from "../footer";
 import BannerSection from "../banner-section";
 import ServiceSection from "../service-section";
 import OfferSection from "../offer-section";
@@ -11,14 +11,14 @@ export default class App extends Component {
   render() {
     return (
       <div className="app-wrapper">
-        <AppHeader />
+        <Header />
         <div className="custom-container">
           <BannerSection />
           <ServiceSection />
           <OfferSection />
           <CoachesSection />
         </div>
-        <AppFooter />
+        <Footer />
       </div>
     );
   }

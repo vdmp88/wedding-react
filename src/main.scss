@@ -6,11 +6,12 @@
 @import "./scss/_base";
 
 @import "./components/button/button.scss";
-@import "./components/app-header/app-header.scss";
-@import "./components/app-footer/app-footer.scss";
+@import "./components/header/header.scss";
+@import "./components/footer/footer.scss";
 @import "./components/banner-section/banner-section.scss";
 @import "./components/service-section/service-section.scss";
 @import "./components/service-slider/service-slider.scss";
 @import "./components/offer-section/offer-section.scss";
 @import "./components/coaches-section/coaches-section.scss";
 @import "./components/coaches-slider/coaches-slider.scss";
+@import "./components/loader/loader.scss";
