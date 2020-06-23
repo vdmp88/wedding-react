@@ -32,6 +32,7 @@ export default class Header extends Component {
 
   render() {
     const { data, loading } = this.state;
+    const { openLogin } = this.props;
     let showContent;
 
     if (loading) {
@@ -57,7 +58,11 @@ export default class Header extends Component {
                 );
               })}
               <li>
-                <Button classList="default-button dark-btn" text="Start" />
+                <Button
+                  callback={openLogin}
+                  classList="default-button dark-btn"
+                  text="Start"
+                />
               </li>
             </ul>
           </nav>

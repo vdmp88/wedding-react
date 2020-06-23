@@ -1,8 +1,12 @@
 import React from "react";
 
 const Button = (props) => {
-  const { classList, text } = props;
-  return <button className={classList}>{text}</button>;
+  const { classList, text, callback } = props;
+  return (
+    <button onClick={callback} className={classList}>
+      {text}
+    </button>
+  );
 };
 
 export default Button;

@@ -15,8 +15,6 @@ export default class CoachesSlider extends Component {
 
     const { sliderContent } = this.props;
 
-    console.log(sliderContent);
-
     return (
       <Slider {...settings}>
         {sliderContent.map((el) => {

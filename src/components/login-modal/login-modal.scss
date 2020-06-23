@@ -1,0 +1,16 @@
+.modal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.5);
+  .modal__content {
+    background-color: $white-color;
+    width: 70%;
+    padding: 22px 32px;
+    margin: 70px auto 0 auto;
+    transition: all 0.3s ease-out;
+  }
+}
