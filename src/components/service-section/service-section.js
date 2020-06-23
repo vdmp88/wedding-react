@@ -1,20 +1,50 @@
-import React from "react";
+import React, { Component } from "react";
 import ServiceSlider from "../service-slider";
+import Loader from "../loader";
+import DataService from "../../service/data-service";
 
-const ServiceSection = () => {
-  return (
-    <section className="section">
-      <div className="container">
-        <h3 className="section__title">Our Services</h3>
-        <p className="section__text">
-          We want to make your wedding day perfect that is why suggest a lot of
-          options for dance: not only for a bride and groom but for their
-          friends and relatives
-        </p>
-        <ServiceSlider />
-      </div>
-    </section>
-  );
-};
+export default class ServiceSection extends Component {
+  dataService = new DataService();
 
-export default ServiceSection;
+  state = {
+    data: {},
+    loading: true,
+  };
+
+  componentDidMount() {
+    this.getContent();
+  }
+
+  getContent() {
+    this.dataService
+      .getServiceSection()
+      .then((data) => {
+        this.setState({
+          data,
+          loading: false,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  render() {
+    const { data, loading } = this.state;
+    let showContent;
+
+    if (loading) {
+      showContent = <Loader />;
+    } else {
+      showContent = (
+        <div>
+          <h3 className="section__title">{data.meta.title}</h3>
+          <p className="section__text">{data.meta.description}</p>
+          <ServiceSlider sliderContent={data.content} />
+        </div>
+      );
+    }
+
+    return <section className="section">{showContent}</section>;
+  }
+}

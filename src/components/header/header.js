@@ -17,12 +17,17 @@ export default class Header extends Component {
   }
 
   getContent() {
-    this.dataService.getNavigation().then((data) => {
-      this.setState({
-        data,
-        loading: false,
+    this.dataService
+      .getNavigation()
+      .then((data) => {
+        this.setState({
+          data,
+          loading: false,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
   }
 
   render() {

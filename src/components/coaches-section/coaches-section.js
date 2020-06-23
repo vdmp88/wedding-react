@@ -1,21 +1,55 @@
-import React from "react";
-
+import React, { Component } from "react";
+import Loader from "../loader";
 import CoachesSlider from "../coaches-slider";
+import DataService from "../../service/data-service";
 
-const CoachesSection = () => {
-  return (
-    <section className="section section--coach">
-      <div className="container">
-        <h3 className="section__title">Our Coaches</h3>
-        <p className="section__text">
-          Coaches in our school are not only perfect dancers but also have a big
-          experience in coaching that is why you will feel really amazing after
-          each of your class
-        </p>
-      </div>
-      <CoachesSlider />
-    </section>
-  );
-};
+export default class CoachesSection extends Component {
+  dataService = new DataService();
 
-export default CoachesSection;
+  state = {
+    data: {},
+    loading: true,
+  };
+
+  componentDidMount() {
+    this.getContent();
+  }
+
+  getContent() {
+    this.dataService
+      .getCoachSection()
+      .then((data) => {
+        this.setState({
+          data,
+          loading: false,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  render() {
+    const {
+      data: { meta, content },
+      loading,
+    } = this.state;
+    let showContent;
+
+    if (loading) {
+      showContent = <Loader />;
+    } else {
+      showContent = (
+        <div>
+          <div>
+            <h3 className="section__title">{meta.title}</h3>
+            <p className="section__text">{meta.description}</p>
+          </div>
+          <CoachesSlider sliderContent={content} />
+        </div>
+      );
+    }
+
+    return <section className="section section--coach">{showContent}</section>;
+  }
+}
