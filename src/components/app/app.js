@@ -9,12 +9,16 @@ import CoachesSection from "../coaches-section";
 import LoginModal from "../login-modal";
 
 export default class App extends Component {
-  state = { isModalOpen: false };
+  state = { isModalOpen: false, isLogin: false };
 
   modalHandler = () => {
     this.setState({
       isModalOpen: !this.state.isModalOpen,
     });
+  };
+
+  checkAuth = () => {
+    this.setState({ isLogin: !!localStorage.getItem("currentUser") });
   };
 
   render() {

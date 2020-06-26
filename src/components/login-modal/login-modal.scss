@@ -13,4 +13,24 @@
     margin: 70px auto 0 auto;
     transition: all 0.3s ease-out;
   }
+  .modal__group {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 18px;
+    label {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    input {
+      outline: none;
+      padding: 8px 5px;
+      border-radius: 4px;
+      border: 1px solid $black-color;
+    }
+  }
+  .modal__group--buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
 }
