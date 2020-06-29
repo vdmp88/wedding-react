@@ -15,7 +15,7 @@ export default class CoachesSection extends Component {
     this.getContent();
   }
 
-  getContent() {
+  getContent = () => {
     this.dataService
       .getCoachSection()
       .then((data) => {
@@ -27,7 +27,7 @@ export default class CoachesSection extends Component {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   render() {
     const {
@@ -40,13 +40,13 @@ export default class CoachesSection extends Component {
       showContent = <Loader />;
     } else {
       showContent = (
-        <div>
-          <div>
+        <>
+          <>
             <h3 className="section__title">{meta.title}</h3>
             <p className="section__text">{meta.description}</p>
-          </div>
+          </>
           <CoachesSlider sliderContent={content} />
-        </div>
+        </>
       );
     }
 

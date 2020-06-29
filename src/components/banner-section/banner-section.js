@@ -14,7 +14,7 @@ export default class BannerSection extends Component {
     this.getContent();
   }
 
-  getContent() {
+  getContent = () => {
     this.dataService
       .getBannerSection()
       .then((data) => {
@@ -26,7 +26,7 @@ export default class BannerSection extends Component {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   render() {
     const { data, loading } = this.state;
@@ -36,7 +36,7 @@ export default class BannerSection extends Component {
       showContent = <Loader />;
     } else {
       showContent = (
-        <div className="container section__content">
+        <div className="section__content">
           <div className="section__wrapper section__wrapper--lesson-desc">
             <h1 className="section__title">{data.meta.title}</h1>
             <span className="section__subtitle">{data.meta.location}</span>

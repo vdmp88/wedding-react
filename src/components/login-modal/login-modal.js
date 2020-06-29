@@ -19,6 +19,7 @@ export default class LoginModal extends Component {
           localStorage.setItem("currentUser", JSON.stringify(res.access_token));
           resetForm();
           closeLogin();
+          this.props.checkAuth();
         } else {
           alert("Input current data");
         }
@@ -27,7 +28,6 @@ export default class LoginModal extends Component {
 
   render() {
     const { isModalOpen, closeLogin } = this.props;
-
     return (
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -60,13 +60,13 @@ export default class LoginModal extends Component {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title">Enter your data:</h5>
+                  <h5 className="modal-title">Wedding Dance:</h5>
                 </div>
                 <div className="modal-body">
-                  <div className="modal__group">
-                    <label className="mt-3 mb-2" htmlFor="email">
-                      Email:
-                    </label>
+                  <div className="input-group">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">Email:</span>
+                    </div>
                     <input
                       className="form-control"
                       onChange={handleChange}
@@ -74,24 +74,25 @@ export default class LoginModal extends Component {
                       type="text"
                       name="email"
                     />
-                    <span className="input-error">
-                      {errors.email && touched.email && errors.email}
-                    </span>
                   </div>
-                  <div className="modal__group">
-                    <label className="mt-3 mb-2" htmlFor="password">
-                      Password:
-                    </label>
+                  <div className="input-error">
+                    {errors.email && touched.email && errors.email}
+                  </div>
+                  <div className="input-group mt-3">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">Password:</span>
+                    </div>
                     <input
+                      autoComplete="on"
                       className="form-control"
                       value={values.password}
                       onChange={handleChange}
                       type="password"
                       name="password"
                     />
-                    <span className="input-error">
-                      {errors.password && touched.password && errors.password}
-                    </span>
+                  </div>
+                  <div className="input-error">
+                    {errors.password && touched.password && errors.password}
                   </div>
                 </div>
                 <div className="modal-footer">

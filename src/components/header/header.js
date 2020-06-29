@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import DataService from "../../service/data-service";
 import Loader from "../loader";
-
 import Button from "../button";
+
+import DataService from "../../service/data-service";
 
 export default class Header extends Component {
   dataService = new DataService();
@@ -10,13 +10,14 @@ export default class Header extends Component {
   state = {
     data: {},
     loading: true,
+    isLogin: this.props.isLogin,
   };
 
   componentDidMount() {
     this.getContent();
   }
 
-  getContent() {
+  getContent = () => {
     this.dataService
       .getNavigation()
       .then((data) => {
@@ -28,11 +29,11 @@ export default class Header extends Component {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   render() {
     const { data, loading } = this.state;
-    const { openLogin } = this.props;
+    const { openLogin, isLogin, onLogout } = this.props;
     let showContent;
 
     if (loading) {
@@ -58,11 +59,19 @@ export default class Header extends Component {
                 );
               })}
               <li>
-                <Button
-                  callback={openLogin}
-                  classList="default-button dark-btn"
-                  text="Start"
-                />
+                {isLogin ? (
+                  <Button
+                    text="Logout"
+                    classList="default-button dark-btn"
+                    callback={onLogout}
+                  />
+                ) : (
+                  <Button
+                    callback={openLogin}
+                    classList="default-button dark-btn"
+                    text="Login"
+                  />
+                )}
               </li>
             </ul>
           </nav>

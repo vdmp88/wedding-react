@@ -15,7 +15,7 @@ export default class ServiceSection extends Component {
     this.getContent();
   }
 
-  getContent() {
+  getContent = () => {
     this.dataService
       .getServiceSection()
       .then((data) => {
@@ -27,7 +27,7 @@ export default class ServiceSection extends Component {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   render() {
     const { data, loading } = this.state;
@@ -37,11 +37,11 @@ export default class ServiceSection extends Component {
       showContent = <Loader />;
     } else {
       showContent = (
-        <div>
+        <>
           <h3 className="section__title">{data.meta.title}</h3>
           <p className="section__text">{data.meta.description}</p>
           <ServiceSlider sliderContent={data.content} />
-        </div>
+        </>
       );
     }
 

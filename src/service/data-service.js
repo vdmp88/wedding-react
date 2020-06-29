@@ -11,23 +11,35 @@ export default class DataService {
     return await res.json();
   }
 
-  async getNavigation() {
-    return await this.getResource("/app/api/v1/section/navigation");
+  getNavigation() {
+    return this.getResource("/app/api/v1/section/navigation");
   }
 
-  async getBannerSection() {
-    return await this.getResource("/app/api/v1/section/info");
+  getBannerSection() {
+    return this.getResource("/app/api/v1/section/info");
   }
 
-  async getServiceSection() {
-    return await this.getResource("/app/api/v1/section/service");
+  getServiceSection() {
+    return this.getResource("/app/api/v1/section/service");
   }
 
-  async getCoachSection() {
-    return await this.getResource("/app/api/v1/section/coach");
+  getCoachSection() {
+    return this.getResource("/app/api/v1/section/coach");
   }
 
-  async getOfferSection() {
-    return await this.getResource("/app/api/v1/section/offer");
+  getOfferSection() {
+    return this.getResource("/app/api/v1/section/offer");
+  }
+
+  updateOfferSection(data) {
+    return fetch(`${this._baseUrl}/app/api/v1/section/offer`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer " + JSON.parse(localStorage.getItem("currentUser")),
+      },
+    });
   }
 }

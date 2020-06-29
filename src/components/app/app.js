@@ -7,13 +7,29 @@ import ServiceSection from "../service-section";
 import OfferSection from "../offer-section";
 import CoachesSection from "../coaches-section";
 import LoginModal from "../login-modal";
+import AuthService from "../../service/auth-service";
 
 export default class App extends Component {
-  state = { isModalOpen: false, isLogin: false };
+  authService = new AuthService();
 
-  modalHandler = () => {
+  state = { loginModal: false, isLogin: false, editModal: false };
+
+  loginModalHandler = () => {
     this.setState({
-      isModalOpen: !this.state.isModalOpen,
+      loginModal: !this.state.loginModal,
+    });
+  };
+
+  editModalHandler = () => {
+    this.setState({
+      editModal: !this.state.editModal,
+    });
+  };
+
+  logout = () => {
+    this.authService.logout();
+    this.setState({
+      isLogin: false,
     });
   };
 
@@ -21,21 +37,39 @@ export default class App extends Component {
     this.setState({ isLogin: !!localStorage.getItem("currentUser") });
   };
 
+  componentDidMount() {
+    this.checkAuth();
+  }
+
   render() {
-    const { isModalOpen } = this.state;
+    const { loginModal, isLogin, editModal } = this.state;
 
     return (
-      <div className="app-wrapper">
-        <LoginModal closeLogin={this.modalHandler} isModalOpen={isModalOpen} />
-        <Header openLogin={this.modalHandler} />
+      <>
+        <LoginModal
+          closeLogin={this.loginModalHandler}
+          isModalOpen={loginModal}
+          checkAuth={this.checkAuth}
+          isLogin={isLogin}
+        />
+        <Header
+          openLogin={this.loginModalHandler}
+          isLogin={isLogin}
+          onLogout={this.logout}
+        />
         <div className="custom-container">
           <BannerSection />
           <ServiceSection />
-          <OfferSection />
+          <OfferSection
+            isLogin={isLogin}
+            openModal={this.editModalHandler}
+            isModalOpen={editModal}
+            closeModal={this.editModalHandler}
+          ></OfferSection>
           <CoachesSection />
         </div>
         <Footer />
-      </div>
+      </>
     );
   }
 }

@@ -10,4 +10,8 @@ export default class AuthClass {
 
     return fetch(`${this._baseUrl}/app/api/v1/user/login`, requestOptions);
   }
+
+  logout() {
+    localStorage.removeItem("currentUser");
+  }
 }
